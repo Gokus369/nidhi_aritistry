@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import { useGSAP, prefersReducedMotion, revealLines } from "../lib/motion.js";
 
-export default function SectionHead({ line1, line2, text }) {
+export default function SectionHead({ line1, line2, text, animate = true }) {
   const ref = useRef(null);
-  useGSAP(() => { if (!prefersReducedMotion()) revealLines(ref.current); });
+  useGSAP(() => { if (animate && !prefersReducedMotion()) revealLines(ref.current); });
 
   return (
     <div className="sec-head">

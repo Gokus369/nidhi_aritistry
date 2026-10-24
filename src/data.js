@@ -64,19 +64,19 @@ export const SERVICES = [
 
 export const MARQUEE = ["Weddings", "Newborns", "Maternity", "Commercials", "Podcasts", "Events"];
 
-// Three columns; `shape`: t = 3/4, s = square, w = 4/3, xt = 2/3. `speed` = parallax drift in %.
+// Three columns; `shape`: t = 3/4, s = square, w = 4/3, xt = 2/3.
 export const GALLERY = [
-  { speed: -6, items: [
+  { items: [
     { id: "1519741497674-611481863552", shape: "t", label: "Wedding" },
     { id: "1555252333-9f8e92e65df9", shape: "s", label: "Newborn" },
     { id: "1537633552985-df8429e8048b", shape: "xt", label: "Portraits" },
   ] },
-  { speed: 8, items: [
+  { items: [
     { id: "1460978812857-470ed1c77af0", shape: "w", label: "Wedding" },
     { id: "1515934751635-c81c6bc9a2d8", shape: "xt", label: "Details" },
     { id: "1519689680058-324335c77eba", shape: "s", label: "Baby" },
   ] },
-  { speed: -10, items: [
+  { items: [
     { id: "1511285560929-80b456fea0bc", shape: "s", label: "Ceremony" },
     { id: "1492725764893-90b379c2b6e7", shape: "t", label: "Motherhood" },
     { id: "1478737270239-2f02b77fc618", shape: "w", label: "Podcast" },
