@@ -9,9 +9,16 @@ export default function Hero({ ready }) {
   // scroll: the small frame grows to fullscreen while the title halves drift apart
   useGSAP(() => {
     if (prefersReducedMotion()) return;
-    const startClip = innerWidth <= 700 ? "inset(34% 16% 30% 16% round 4px)" : "inset(30% 34% 30% 34% round 4px)";
-    gsap.timeline({ scrollTrigger: { trigger: root.current, start: "top top", end: "+=160%", scrub: 1, pin: true } })
-      .fromTo(".hero-media", { clipPath: startClip }, { clipPath: "inset(0% 0% 0% 0% round 0px)", ease: "none" }, 0)
+    // portrait starting frame on every screen size (matches --hero-clip in CSS)
+    const startClip = () => {
+      const h = innerHeight * 0.4;
+      const w = Math.min(h * 0.82, innerWidth * 0.68);
+      const x = (innerWidth - w) / 2;
+      const top = innerHeight * 0.32;
+      return `inset(${top}px ${x}px ${innerHeight - top - h}px ${x}px round 4px)`;
+    };
+    gsap.timeline({ scrollTrigger: { trigger: root.current, start: "top top", end: "+=160%", scrub: 1, pin: true, invalidateOnRefresh: true } })
+      .fromTo(".hero-media", { clipPath: startClip }, { clipPath: "inset(0px 0px 0px 0px round 0px)", ease: "none" }, 0)
       .to(".hero-media img", { scale: 1, ease: "none" }, 0)
       .to(".hero-title .l", { xPercent: -45, yPercent: -40, opacity: 0, ease: "power1.in" }, 0)
       .to(".hero-title .r", { xPercent: 45, yPercent: 40, opacity: 0, ease: "power1.in" }, 0)
