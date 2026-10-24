@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nidhi Artistry — Photography & Films</title>
+<meta name="description" content="Nidhi Artistry — wedding photography & films, newborn and maternity portraits, commercial ads, podcasts and events. Studio in Krishnapuram, Alappuzha, Kerala.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0b09;
+  --bg-2:#14120f;
+  --ink:#f3eee5;
+  --muted:#8e877b;
+  --line:rgba(243,238,229,.12);
+  --gold:#c9a86a;
+  --gold-2:#e6cf9f;
+  --serif:"Cormorant Garamond", Georgia, serif;
+  --sans:"Manrope", system-ui, sans-serif;
+  --pad:clamp(16px, 4vw, 64px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:var(--bg)}
+.serif{font-family:var(--serif);font-weight:300}
+.it{font-style:italic;color:var(--gold-2)}
+.eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--muted)}
+.wrap{padding-inline:var(--pad)}
+
+/* film grain */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:90;opacity:.06;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 1.2s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-2%)}60%{transform:translate(-2%,-4%)}80%{transform:translate(4%,2%)}100%{transform:translate(0,0)}}
+
+/* preloader */
+.loader{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;flex-direction:column;justify-content:space-between;padding:var(--pad)}
+.loader-top{display:flex;justify-content:space-between}
+.loader-name{font-family:var(--serif);font-size:clamp(2.4rem,7vw,6rem);font-weight:300;line-height:1;overflow:hidden}
+.loader-name span{display:inline-block;transform:translateY(110%)}
+.loader-count{font-family:var(--serif);font-size:clamp(4rem,14vw,12rem);line-height:.8;font-weight:300;align-self:flex-end;color:var(--gold)}
+.loader-bar{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--gold);transform-origin:left;transform:scaleX(0)}
+
+/* cursor */
+.cursor{position:fixed;top:0;left:0;z-index:95;pointer-events:none;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--ink);mix-blend-mode:difference;display:none}
+.cursor-ring{position:fixed;top:0;left:0;z-index:95;pointer-events:none;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;border:1px solid rgba(243,238,229,.35);display:none;align-items:center;justify-content:center;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;transition:width .35s,height .35s,margin .35s,background .35s,border-color .35s}
+.cursor-ring.is-view{width:96px;height:96px;margin:-48px 0 0 -48px;background:var(--gold);border-color:var(--gold);color:var(--bg)}
+.cursor-ring span{opacity:0;transition:opacity .3s}
+.cursor-ring.is-view span{opacity:1}
+@media (hover:hover) and (pointer:fine){.cursor{display:block}.cursor-ring{display:flex}}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;justify-content:space-between;padding:22px var(--pad);transition:transform .5s cubic-bezier(.7,0,.2,1),background .4s}
+.nav.is-hidden{transform:translateY(-110%)}
+.nav.is-solid{background:rgba(12,11,9,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.logo{font-family:var(--serif);font-size:1.6rem;font-weight:400;letter-spacing:.02em}
+.logo b{color:var(--gold);font-weight:400}
+.nav-links{display:flex;gap:36px;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase}
+.nav-links a{position:relative;color:var(--muted);transition:color .3s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .4s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border:1px solid var(--gold);border-radius:100px;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);position:relative;overflow:hidden;isolation:isolate;transition:color .4s}
+.btn::before{content:"";position:absolute;inset:0;background:var(--gold);transform:translateY(101%);transition:transform .45s cubic-bezier(.7,0,.2,1);z-index:-1;border-radius:inherit}
+.btn:hover{color:var(--bg)}
+.btn:hover::before{transform:translateY(0)}
+.btn.solid{background:var(--gold);color:var(--bg)}
+.btn.solid::before{background:var(--ink)}
+@media (max-width:860px){.nav-links{display:none}.nav .btn{padding:11px 18px}}
+
+/* hero */
+.hero{position:relative;height:100vh;height:100svh;overflow:hidden}
+.hero-media{position:absolute;inset:0;clip-path:var(--hero-clip);will-change:clip-path}
+:root{--hero-clip:inset(30% 34% 30% 34% round 4px)}
+@media (max-width:700px){:root{--hero-clip:inset(34% 16% 30% 16% round 4px)}}
+.hero-media img{transform:scale(1.35);will-change:transform}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,11,9,.15) 40%,rgba(12,11,9,.75))}
+.hero-title{position:absolute;inset:0;pointer-events:none;mix-blend-mode:difference;font-family:var(--serif);font-weight:300;font-size:clamp(3.6rem,15vw,15rem);line-height:.85;letter-spacing:-.02em}
+.hero-title .row{position:absolute;overflow:hidden;padding-bottom:.08em}
+.hero-title .l{top:9%;left:var(--pad)}
+.hero-title .r{bottom:9%;right:var(--pad);font-style:italic}
+.hero-title .ch{display:inline-block;will-change:transform}
+.hero-meta{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(18px,3vh,32px);display:flex;justify-content:space-between;align-items:flex-end;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.hero-meta .scroll-cue{display:flex;align-items:center;gap:12px}
+.hero-meta .scroll-cue i{display:block;width:1px;height:44px;background:linear-gradient(var(--gold),transparent);animation:cue 2s infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.hero-caption{position:absolute;left:var(--pad);bottom:var(--pad);max-width:560px;opacity:0;transform:translateY(40px)}
+.hero-caption h2{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,4.4vw,4rem);line-height:1.05}
+.hero-caption p{margin-top:16px;color:#cfc8bb;max-width:420px}
+@media (max-width:700px){.hero-title .l{top:14%}.hero-meta{top:calc(14% + 17vw);bottom:auto;flex-direction:column;align-items:flex-start;gap:8px;letter-spacing:.2em}.hero-meta .scroll-cue{display:none}}
+
+/* manifesto */
+.manifesto{padding:clamp(120px,18vw,240px) var(--pad)}
+.manifesto .eyebrow{margin-bottom:40px}
+#manifesto{font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,4.6vw,4.6rem);line-height:1.12;max-width:1300px}
+.manifesto .w{opacity:.12;display:inline-block;margin-right:.22em}
+.manifesto .w.it{font-style:italic}
+
+/* section head */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(40px,6vw,80px)}
+.sec-head h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,7vw,7rem);line-height:.95;letter-spacing:-.01em}
+.sec-head p{max-width:360px;color:var(--muted)}
+.line-mask{overflow:hidden;display:block;padding-bottom:.06em}
+.line-mask > span{display:block}
+
+/* services — horizontal */
+.services{position:relative;background:var(--bg-2)}
+.services-intro{padding:clamp(100px,12vw,160px) var(--pad) 0}
+.svc-pin{height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.svc-track{display:flex;gap:clamp(24px,3vw,48px);padding-inline:var(--pad);width:max-content}
+.svc{position:relative;width:min(72vw,980px);flex-shrink:0;display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(20px,3vw,48px);align-items:end}
+.svc-img{position:relative;height:min(68vh,640px);overflow:hidden;border-radius:4px}
+.svc-img img{width:120%;max-width:none;margin-left:-10%;will-change:transform}
+.svc-num{font-family:var(--serif);font-size:clamp(5rem,9vw,9rem);line-height:.8;color:transparent;-webkit-text-stroke:1px var(--gold);font-weight:300}
+.svc h3{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,3.6vw,3.6rem);line-height:1;margin:18px 0 18px}
+.svc p{color:#bdb6a9;max-width:380px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tags span{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--line);padding:7px 12px;border-radius:100px;color:var(--muted)}
+.svc-progress{margin:clamp(30px,5vh,56px) var(--pad) 0;height:1px;background:var(--line);position:relative}
+.svc-progress i{position:absolute;inset:0;background:var(--gold);transform-origin:left;transform:scaleX(0)}
+.svc-count{margin:14px var(--pad) 0;display:flex;justify-content:space-between;font-size:.72rem;letter-spacing:.3em;color:var(--muted)}
+@media (max-width:899px){
+  .svc-pin{height:auto;padding:40px 0 100px}
+  .svc-track{flex-direction:column;width:auto;gap:80px}
+  .svc{width:100%;grid-template-columns:1fr}
+  .svc-img{height:62vh}
+  .svc-progress,.svc-count{display:none}
+}
+
+/* marquee */
+.marquee{padding:clamp(60px,8vw,110px) 0;overflow:hidden;border-block:1px solid var(--line);white-space:nowrap}
+.marquee-inner{display:inline-flex;will-change:transform}
+.marquee span{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,9vw,9rem);line-height:1;padding-right:.4em;display:inline-flex;align-items:center;gap:.4em}
+.marquee span em{color:var(--gold-2)}
+.marquee span::after{content:"✦";font-size:.35em;color:var(--gold)}
+
+/* gallery */
+.gallery{padding:clamp(100px,14vw,200px) var(--pad);overflow:hidden}
+.g-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.6vw,24px);align-items:start}
+.g-col{display:flex;flex-direction:column;gap:clamp(12px,1.6vw,24px)}
+.g-col:nth-child(2){margin-top:18vh}
+.g-item{position:relative;overflow:hidden;border-radius:3px;cursor:none}
+.g-item img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter .8s;filter:saturate(.9)}
+.g-item:hover img{transform:scale(1.06);filter:saturate(1.05)}
+.g-item figcaption{position:absolute;left:16px;bottom:14px;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:.5s}
+.g-item:hover figcaption{opacity:1;transform:none}
+.g-item.t{aspect-ratio:3/4}.g-item.s{aspect-ratio:1/1}.g-item.w{aspect-ratio:4/3}.g-item.xt{aspect-ratio:2/3}
+@media (max-width:700px){.g-grid{grid-template-columns:1fr 1fr}.g-col:nth-child(3){display:none}.g-col:nth-child(2){margin-top:10vh}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.stat{padding:clamp(36px,5vw,72px) var(--pad);border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-family:var(--serif);font-weight:300;font-size:clamp(3rem,6vw,6rem);line-height:1;color:var(--ink)}
+.stat b sup{font-size:.4em;color:var(--gold);vertical-align:top;margin-left:4px}
+.stat > span{display:block;margin-top:12px;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:800px){.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+/* studio */
+.studio{position:relative;overflow:hidden;padding:clamp(100px,14vw,200px) var(--pad);display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:center}
+.studio-img{position:relative;height:min(85vh,820px);overflow:hidden;border-radius:4px}
+.studio-img img{height:125%;will-change:transform}
+.studio h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,5.4vw,5.4rem);line-height:.98;margin:20px 0 28px}
+.studio > div > p{color:#bdb6a9;max-width:460px}
+.rent{margin-top:44px;border-top:1px solid var(--line)}
+.rent li{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;border-bottom:1px solid var(--line);transition:padding .4s}
+.rent li:hover{padding-left:12px}
+.rent h4{font-family:var(--serif);font-weight:400;font-size:clamp(1.3rem,2vw,1.7rem)}
+.rent small{display:block;color:var(--muted);font-size:.84rem;margin-top:2px}
+.rent a{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+@media (max-width:860px){.studio{grid-template-columns:1fr}.studio-img{height:70vh}}
+
+/* process */
+.process{padding:clamp(100px,12vw,180px) var(--pad);background:var(--bg-2)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,40px);position:relative;padding-top:48px}
+.steps-line{position:absolute;top:0;left:0;right:0;height:1px;background:var(--line)}
+.steps-line i{position:absolute;inset:0;background:var(--gold);transform-origin:left;transform:scaleX(0)}
+.step{position:relative}
+.step::before{content:"";position:absolute;top:-53px;left:0;width:11px;height:11px;border-radius:50%;background:var(--bg-2);border:1px solid var(--gold)}
+.step em{font-family:var(--serif);font-size:1.1rem;color:var(--gold)}
+.step h4{font-family:var(--serif);font-weight:300;font-size:clamp(1.8rem,2.6vw,2.6rem);margin:10px 0 12px}
+.step p{color:var(--muted);font-size:.95rem}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr;row-gap:60px}.steps-line,.step::before{display:none}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* contact */
+.contact{position:relative;padding:clamp(120px,16vw,220px) var(--pad) clamp(60px,8vw,100px);overflow:hidden}
+.contact-bg{position:absolute;inset:0;opacity:.22}
+.contact-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(var(--bg),rgba(12,11,9,.6) 40%,var(--bg))}
+.contact > *:not(.contact-bg){position:relative}
+.contact h2{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,10vw,11rem);line-height:.9;letter-spacing:-.02em}
+.contact h2 .ch{display:inline-block}
+.contact-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:52px}
+.contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:clamp(70px,10vw,140px);padding-top:40px;border-top:1px solid var(--line)}
+.contact-grid h5{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:14px}
+.contact-grid p,.contact-grid a{font-size:1rem;color:var(--ink)}
+.contact-grid a.u{border-bottom:1px solid var(--line);transition:border-color .3s}
+.contact-grid a.u:hover{border-color:var(--gold)}
+.open-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#7bc47f;margin-right:8px;box-shadow:0 0 0 4px rgba(123,196,127,.15)}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.contact-grid{grid-template-columns:1fr}}
+
+/* footer */
+footer{padding:0 var(--pad) 28px;overflow:hidden}
+.foot-big{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,16.5vw,17rem);line-height:.8;letter-spacing:-.03em;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(201,168,106,.45);text-align:center}
+.foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:28px;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+/* whatsapp float */
+.wa{position:fixed;right:20px;bottom:20px;z-index:70;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.35);transform:scale(0);transition:transform .4s cubic-bezier(.3,1.6,.5,1)}
+.wa.show{transform:scale(1)}
+.wa svg{width:28px;height:28px;fill:#fff}
+
+[data-reveal]{clip-path:inset(100% 0 0 0)}
+[data-reveal] img{transform:scale(1.3)}
+
+@media (prefers-reduced-motion:reduce){
+  .grain{animation:none}
+  [data-reveal]{clip-path:none}[data-reveal] img{transform:none}
+  .hero-media{clip-path:none}.hero-media img{transform:none}
+  .manifesto .w{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"><span>View</span></div>
+
+<!-- Preloader -->
+<div class="loader" aria-hidden="true">
+  <div class="loader-top eyebrow"><span>Photography & Films</span><span>Alappuzha · Kerala</span></div>
+  <div>
+    <div class="loader-name"><span>Nidhi&nbsp;</span><span class="it">Artistry</span></div>
+  </div>
+  <div class="loader-count">0</div>
+  <div class="loader-bar"></div>
+</div>
+
+<!-- Nav -->
+<header class="nav">
+  <a href="#top" class="logo">Nidhi<b>.</b></a>
+  <nav class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#work">Work</a>
+    <a href="#studio">Studio</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a href="#contact" class="btn magnetic">Book a shoot</a>
+</header>
+
+<main id="top">
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-media">
+    <img src="https://images.unsplash.com/photo-1604017011826-d3b4c23f8914?w=2000&q=80&auto=format&fit=crop" alt="Bride and groom portrait">
+  </div>
+  <h1 class="hero-title" aria-label="Nidhi Artistry">
+    <span class="row l" data-split>Nidhi</span>
+    <span class="row r" data-split>Artistry</span>
+  </h1>
+  <div class="hero-meta">
+    <span>Photography & Films</span>
+    <span class="scroll-cue"><i></i>Scroll</span>
+    <span>Est. in Krishnapuram, Alappuzha</span>
+  </div>
+  <div class="hero-caption">
+    <p class="eyebrow" style="margin:0 0 14px">★ 4.9 · Rated by 77 clients</p>
+    <h2>Moments that become <span class="it">heirlooms.</span></h2>
+    <p>Weddings, new beginnings, brands and voices, captured with patience and a quiet eye for light.</p>
+  </div>
+</section>
+
+<!-- Manifesto -->
+<section class="manifesto">
+  <p class="eyebrow">( The Studio )</p>
+  <p id="manifesto">We are Nidhi Artistry, a photography and film studio from Alappuzha. From a newborn's first <em>yawn</em> to the last dance of a wedding night, we tell honest stories in <em>light,</em> texture and feeling, made to be held for a lifetime.</p>
+</section>
+
+<!-- Services -->
+<section class="services" id="services">
+  <div class="services-intro">
+    <div class="sec-head">
+      <h2><span class="line-mask"><span>What we</span></span><span class="line-mask"><span class="it">create.</span></span></h2>
+      <p>Five crafts, one sensibility. Every frame is planned, lit and edited in-house.</p>
+    </div>
+  </div>
+  <div class="svc-pin">
+    <div class="svc-track">
+      <article class="svc">
+        <div class="svc-img" data-cursor="view"><img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=1400&q=80&auto=format&fit=crop" alt="Wedding couple"></div>
+        <div>
+          <div class="svc-num">01</div>
+          <h3>Wedding <span class="it">Photo & Film</span></h3>
+          <p>Candid and traditional coverage of your big day, from haldi to reception. Cinematic films, highlight reels and handcrafted albums.</p>
+          <div class="tags"><span>Candid</span><span>Cinematic film</span><span>Pre-wedding</span><span>Albums</span></div>
+        </div>
+      </article>
+      <article class="svc">
+        <div class="svc-img" data-cursor="view"><img src="https://images.unsplash.com/photo-1544126592-807ade215a0b?w=1400&q=80&auto=format&fit=crop" alt="Newborn baby portrait"></div>
+        <div>
+          <div class="svc-num">02</div>
+          <h3>Newborn & <span class="it">Maternity</span></h3>
+          <p>Gentle, safe newborn sessions in our themed studio, plus maternity portraits that celebrate the wait. Props and outfits provided.</p>
+          <div class="tags"><span>Newborn</span><span>Maternity</span><span>Baby milestones</span><span>Themed sets</span></div>
+        </div>
+      </article>
+      <article class="svc">
+        <div class="svc-img" data-cursor="view"><img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1400&q=80&auto=format&fit=crop" alt="Photographer with camera"></div>
+        <div>
+          <div class="svc-num">03</div>
+          <h3>Commercial <span class="it">& Ads</span></h3>
+          <p>Product photography, brand films and social-first ad content that sells, from concept and storyboard to the final cut.</p>
+          <div class="tags"><span>Product</span><span>Brand films</span><span>Reels</span><span>Catalogue</span></div>
+        </div>
+      </article>
+      <article class="svc">
+        <div class="svc-img" data-cursor="view"><img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=1400&q=80&auto=format&fit=crop" alt="Podcast microphone"></div>
+        <div>
+          <div class="svc-num">04</div>
+          <h3>Podcast <span class="it">Production</span></h3>
+          <p>A ready-to-record media studio with multi-camera video, clean audio and editing, so you only have to bring the conversation.</p>
+          <div class="tags"><span>Multi-cam</span><span>Audio</span><span>Editing</span><span>Shorts</span></div>
+        </div>
+      </article>
+      <article class="svc">
+        <div class="svc-img" data-cursor="view"><img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=1400&q=80&auto=format&fit=crop" alt="Event coverage"></div>
+        <div>
+          <div class="svc-num">05</div>
+          <h3>All Kinds <span class="it">of Events</span></h3>
+          <p>Birthdays, baptisms, engagements, corporate gatherings and cultural programmes, covered end to end in photo and video.</p>
+          <div class="tags"><span>Birthdays</span><span>Baptism</span><span>Corporate</span><span>Live coverage</span></div>
+        </div>
+      </article>
+    </div>
+    <div class="svc-progress"><i></i></div>
+    <div class="svc-count"><span>DRAG · SCROLL</span><span><b class="svc-cur">01</b> / 05</span></div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-inner">
+    <span>Weddings</span><span><em>Newborns</em></span><span>Maternity</span><span><em>Commercials</em></span><span>Podcasts</span><span><em>Events</em></span>
+    <span>Weddings</span><span><em>Newborns</em></span><span>Maternity</span><span><em>Commercials</em></span><span>Podcasts</span><span><em>Events</em></span>
+  </div>
+</div>
+
+<!-- Gallery -->
+<section class="gallery" id="work">
+  <div class="sec-head">
+    <h2><span class="line-mask"><span>Selected</span></span><span class="line-mask"><span class="it">frames.</span></span></h2>
+    <p>A glimpse from recent sessions: weddings, little ones and everything in between.</p>
+  </div>
+  <div class="g-grid">
+    <div class="g-col" data-speed="-6">
+      <figure class="g-item t" data-reveal data-cursor="view"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy"><figcaption>Wedding</figcaption></figure>
+      <figure class="g-item s" data-reveal data-cursor="view"><img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy"><figcaption>Newborn</figcaption></figure>
+      <figure class="g-item xt" data-reveal data-cursor="view"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy"><figcaption>Portraits</figcaption></figure>
+    </div>
+    <div class="g-col" data-speed="8">
+      <figure class="g-item w" data-reveal data-cursor="view"><img src="https://images.unsplash.com/photo-1460978812857-470ed1c77af0?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy"><figcaption>Wedding</figcaption></figure>
+      <figure class="g-item xt" data-reveal data-cursor="view"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy"><figcaption>Details</figcaption></figure>
+      <figure class="g-item s" data-reveal data-cursor="view"><img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy"><figcaption>Baby</figcaption></figure>
+    </div>
+    <div class="g-col" data-speed="-10">
+      <figure class="g-item s" data-reveal data-cursor="view"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy"><figcaption>Ceremony</figcaption></figure>
+      <figure class="g-item t" data-reveal data-cursor="view"><img src="https://images.unsplash.com/photo-1492725764893-90b379c2b6e7?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy"><figcaption>Motherhood</figcaption></figure>
+      <figure class="g-item w" data-reveal data-cursor="view"><img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=900&q=80&auto=format&fit=crop" alt="" loading="lazy"><figcaption>Podcast</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats">
+  <div class="stat"><b><span data-count="4.9" data-dec="1">0</span><sup>★</sup></b><span>Average rating</span></div>
+  <div class="stat"><b><span data-count="77">0</span><sup>+</sup></b><span>Client reviews</span></div>
+  <div class="stat"><b><span data-count="5">0</span></b><span>Specialities</span></div>
+  <div class="stat"><b><span data-count="3">0</span></b><span>Studio spaces for hire</span></div>
+</section>
+
+<!-- Studio -->
+<section class="studio" id="studio">
+  <div class="studio-img" data-reveal><img src="https://images.unsplash.com/photo-1566004100631-35d015d6a491?w=1400&q=80&auto=format&fit=crop" alt="Baby portrait in studio"></div>
+  <div>
+    <p class="eyebrow">( Krishnapuram Studio )</p>
+    <h2><span class="line-mask"><span>A space built</span></span><span class="line-mask"><span>for <span class="it">your story.</span></span></span></h2>
+    <p>Our studio near Health Center, Krishnapuram, has themed newborn sets, controlled lighting and a media room, and it's available to rent for creators and brands.</p>
+    <ul class="rent">
+      <li><div><h4>Professional Studio Rental</h4><small>Fully lit studio with backdrops and gear</small></div><a href="#contact">Ask price →</a></li>
+      <li><div><h4>Media Studio</h4><small>Podcasts, interviews and video content</small></div><a href="#contact">Ask price →</a></li>
+      <li><div><h4>Studio Space Rental</h4><small>Flexible space for shoots and workshops</small></div><a href="#contact">Ask price →</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="process">
+  <div class="sec-head">
+    <h2><span class="line-mask"><span>How it</span></span><span class="line-mask"><span class="it">unfolds.</span></span></h2>
+    <p>Simple, personal and unhurried, from the first message to the final album.</p>
+  </div>
+  <div class="steps">
+    <div class="steps-line"><i></i></div>
+    <div class="step"><em>i.</em><h4>Connect</h4><p>Tell us about your day, your baby or your brand on WhatsApp or a call.</p></div>
+    <div class="step"><em>ii.</em><h4>Plan</h4><p>We shape the mood, locations, outfits and shot list together.</p></div>
+    <div class="step"><em>iii.</em><h4>Create</h4><p>A relaxed shoot where you stay present and we handle the light.</p></div>
+    <div class="step"><em>iv.</em><h4>Deliver</h4><p>Carefully edited photos, films and albums, made to last.</p></div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="contact-bg"><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=2000&q=70&auto=format&fit=crop" alt=""></div>
+  <p class="eyebrow" style="margin-bottom:28px">( Let's talk )</p>
+  <h2><span class="line-mask"><span data-split>Let's create</span></span><span class="line-mask"><span class="it" data-split>something timeless.</span></span></h2>
+  <div class="contact-actions">
+    <a class="btn solid magnetic js-wa" href="#" target="_blank" rel="noopener">WhatsApp us</a>
+    <a class="btn magnetic js-call" href="#">Call the studio</a>
+    <a class="btn magnetic" href="https://www.google.com/maps/search/?api=1&query=Nidhi+Artistry+Krishnapuram+Alappuzha" target="_blank" rel="noopener">Get directions</a>
+  </div>
+  <div class="contact-grid">
+    <div><h5>Studio</h5><p>Health Center, Krishnapuram,<br>Alappuzha 690533, Kerala</p></div>
+    <div><h5>Hours</h5><p><span class="open-dot"></span>Open daily until 6:00 pm</p></div>
+    <div><h5>Speak</h5><p><a class="u js-call js-phone-text" href="#">+91 00000 00000</a></p></div>
+    <div><h5>Follow</h5><p><a class="u" href="#" target="_blank" rel="noopener">Instagram</a> · <a class="u" href="#" target="_blank" rel="noopener">YouTube</a></p></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="foot-big">Nidhi Artistry</div>
+  <div class="foot-row"><span>© <span id="yr"></span> Nidhi Artistry</span><span>Photography · Films · Studio</span><span>Alappuzha, Kerala</span></div>
+</footer>
+
+<a class="wa js-wa" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.5.7 4.8 1.9 6.8L3 29l6.8-2.1c1.9 1 4 1.6 6.2 1.6 7 0 12.7-5.6 12.7-12.6S23 3 16 3zm0 23.1c-2 0-3.9-.6-5.5-1.6l-.4-.2-4 1.2 1.3-3.9-.3-.4c-1.1-1.7-1.7-3.6-1.7-5.6C5.4 9.8 10.2 5.1 16 5.1s10.6 4.7 10.6 10.5S21.8 26.1 16 26.1zm5.8-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6c.2-.2.2-.3.3-.6.1-.2 0-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.7s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+/* ===== Edit your contact details here ===== */
+const CONFIG = {
+  phone: "+910000000000",          // studio number, digits only with country code
+  phoneDisplay: "+91 00000 00000",
+  whatsappMessage: "Hi Nidhi Artistry! I'd like to enquire about a shoot."
+};
+
+(() => {
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // contact links
+  const waUrl = `https://wa.me/${CONFIG.phone.replace(/\D/g, "")}?text=${encodeURIComponent(CONFIG.whatsappMessage)}`;
+  $$(".js-wa").forEach(a => a.href = waUrl);
+  $$(".js-call").forEach(a => a.href = `tel:${CONFIG.phone}`);
+  $$(".js-phone-text").forEach(a => a.textContent = CONFIG.phoneDisplay);
+  $("#yr").textContent = new Date().getFullYear();
+
+  // split helpers
+  $$("[data-split]").forEach(el => {
+    el.innerHTML = [...el.textContent].map(c => c === " " ? " " : `<span class="ch">${c}</span>`).join("");
+  });
+  const man = $("#manifesto");
+  man.innerHTML = man.innerHTML.split(/(<em>.*?<\/em>|\s+)/).filter(t => t && t.trim()).map(t => {
+    const isEm = t.startsWith("<em>");
+    return `<span class="w${isEm ? " it" : ""}">${isEm ? t.replace(/<\/?em>/g, "") : t}</span>`;
+  }).join("");
+
+  if (!window.gsap) { $(".loader").remove(); return; }
+  gsap.registerPlugin(ScrollTrigger);
+
+  // smooth scroll
+  let lenis = null;
+  if (window.Lenis && !reduce) {
+    lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
+    lenis.on("scroll", ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+    lenis.stop();
+  }
+  $$('a[href^="#"]').forEach(a => a.addEventListener("click", e => {
+    const id = a.getAttribute("href");
+    if (id.length < 2) return;
+    const t = $(id); if (!t) return;
+    e.preventDefault();
+    lenis ? lenis.scrollTo(t, { duration: 1.6 }) : t.scrollIntoView({ behavior: "smooth" });
+  }));
+
+  // preloader
+  const counter = { v: 0 };
+  const intro = gsap.timeline({ onComplete: () => { lenis && lenis.start(); ScrollTrigger.refresh(); } });
+  intro
+    .to(".loader-name span", { y: 0, duration: 1, ease: "power4.out", stagger: .12 })
+    .to(counter, { v: 100, duration: reduce ? .3 : 1.8, ease: "power2.inOut",
+      onUpdate: () => $(".loader-count").textContent = Math.round(counter.v) }, 0)
+    .to(".loader-bar", { scaleX: 1, duration: reduce ? .3 : 1.8, ease: "power2.inOut" }, 0)
+    .to(".loader", { yPercent: -100, duration: 1.1, ease: "expo.inOut" }, "+=.15")
+    .from(".hero-title .ch", { yPercent: 110, duration: 1.2, ease: "expo.out", stagger: .04 }, "-=.55")
+    .from(".hero-media img", { scale: 1.8, duration: 1.8, ease: "expo.out" }, "<")
+    .from(".hero-meta > *, .nav", { opacity: 0, y: 20, duration: .9, stagger: .08 }, "-=1.2")
+    .set(".loader", { display: "none" });
+
+  if (reduce) {
+    $$("[data-count]").forEach(el => el.textContent = (+el.dataset.count).toFixed(+(el.dataset.dec || 0)));
+    return;
+  }
+
+  // cursor
+  if (matchMedia("(hover:hover) and (pointer:fine)").matches) {
+    const dot = $(".cursor"), ring = $(".cursor-ring");
+    const dx = gsap.quickTo(dot, "x", { duration: .1 }), dy = gsap.quickTo(dot, "y", { duration: .1 });
+    const rx = gsap.quickTo(ring, "x", { duration: .5, ease: "power3" }), ry = gsap.quickTo(ring, "y", { duration: .5, ease: "power3" });
+    addEventListener("mousemove", e => { dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY); });
+    $$("[data-cursor=view]").forEach(el => {
+      el.addEventListener("mouseenter", () => ring.classList.add("is-view"));
+      el.addEventListener("mouseleave", () => ring.classList.remove("is-view"));
+    });
+    $$(".magnetic").forEach(el => {
+      const mx = gsap.quickTo(el, "x", { duration: .6, ease: "elastic.out(1,.4)" });
+      const my = gsap.quickTo(el, "y", { duration: .6, ease: "elastic.out(1,.4)" });
+      el.addEventListener("mousemove", e => {
+        const r = el.getBoundingClientRect();
+        mx((e.clientX - r.left - r.width / 2) * .3); my((e.clientY - r.top - r.height / 2) * .4);
+      });
+      el.addEventListener("mouseleave", () => { mx(0); my(0); });
+    });
+  }
+
+  // nav hide/show + whatsapp float
+  const nav = $(".nav"), wa = $(".wa");
+  ScrollTrigger.create({
+    start: 0, end: "max",
+    onUpdate: s => {
+      const y = s.scroll();
+      nav.classList.toggle("is-hidden", s.direction === 1 && y > 200);
+      nav.classList.toggle("is-solid", y > 80);
+      wa.classList.toggle("show", y > innerHeight * .8);
+    }
+  });
+
+  // hero: frame expands to fullscreen, title parts drift away
+  gsap.timeline({ scrollTrigger: { trigger: ".hero", start: "top top", end: "+=160%", scrub: 1, pin: true } })
+    .fromTo(".hero-media", { clipPath: innerWidth <= 700 ? "inset(34% 16% 30% 16% round 4px)" : "inset(30% 34% 30% 34% round 4px)" }, { clipPath: "inset(0% 0% 0% 0% round 0px)", ease: "none" }, 0)
+    .to(".hero-media img", { scale: 1, ease: "none" }, 0)
+    .to(".hero-title .l", { xPercent: -45, yPercent: -40, opacity: 0, ease: "power1.in" }, 0)
+    .to(".hero-title .r", { xPercent: 45, yPercent: 40, opacity: 0, ease: "power1.in" }, 0)
+    .to(".hero-meta", { opacity: 0, duration: .3 }, 0)
+    .to(".hero-caption", { opacity: 1, y: 0, duration: .35 }, .65);
+
+  // manifesto word reveal
+  gsap.to("#manifesto .w", {
+    opacity: 1, stagger: .08, ease: "none",
+    scrollTrigger: { trigger: "#manifesto", start: "top 80%", end: "bottom 45%", scrub: true }
+  });
+
+  // masked line reveals for headings
+  $$(".sec-head h2, .studio h2").forEach(h => {
+    gsap.from($$(".line-mask > span", h), {
+      yPercent: 110, duration: 1.2, ease: "expo.out", stagger: .1,
+      scrollTrigger: { trigger: h, start: "top 85%" }
+    });
+  });
+
+  // image clip reveals
+  $$("[data-reveal]").forEach(el => {
+    gsap.timeline({ scrollTrigger: { trigger: el, start: "top 88%" } })
+      .to(el, { clipPath: "inset(0% 0 0 0)", duration: 1.4, ease: "expo.inOut" })
+      .to($("img", el), { scale: 1, duration: 1.8, ease: "expo.out" }, "<.1");
+  });
+
+  // services horizontal scroll (desktop) / vertical reveals (mobile)
+  const mm = gsap.matchMedia();
+  mm.add("(min-width: 900px)", () => {
+    const track = $(".svc-track"), panels = $$(".svc");
+    const dist = () => track.scrollWidth - innerWidth;
+    const h = gsap.to(track, {
+      x: () => -dist(), ease: "none",
+      scrollTrigger: {
+        trigger: ".svc-pin", start: "top top", end: () => "+=" + dist(),
+        pin: true, scrub: 1, invalidateOnRefresh: true,
+        onUpdate: s => {
+          gsap.set(".svc-progress i", { scaleX: s.progress });
+          $(".svc-cur").textContent = String(Math.min(panels.length, Math.floor(s.progress * panels.length) + 1)).padStart(2, "0");
+        }
+      }
+    });
+    panels.forEach(p => {
+      gsap.fromTo($("img", p), { xPercent: -8 }, { xPercent: 8, ease: "none",
+        scrollTrigger: { trigger: p, containerAnimation: h, start: "left right", end: "right left", scrub: true } });
+      gsap.from($$(".svc-num, h3, p, .tags", p), { y: 60, opacity: 0, stagger: .08, duration: 1, ease: "power3.out",
+        scrollTrigger: { trigger: p, containerAnimation: h, start: "left 75%" } });
+    });
+  });
+  mm.add("(max-width: 899px)", () => {
+    $$(".svc").forEach(p => {
+      gsap.from($(".svc-img", p), { clipPath: "inset(100% 0 0 0)", duration: 1.3, ease: "expo.inOut", scrollTrigger: { trigger: p, start: "top 85%" } });
+      gsap.from($$(".svc-num, h3, p, .tags", p), { y: 40, opacity: 0, stagger: .08, duration: .9, ease: "power3.out", scrollTrigger: { trigger: p, start: "top 60%" } });
+    });
+  });
+
+  // marquee reacts to scroll velocity
+  const mq = gsap.to(".marquee-inner", { xPercent: -50, duration: 28, ease: "none", repeat: -1 });
+  let skewTo = gsap.quickTo(".marquee-inner", "skewX", { duration: .4 });
+  ScrollTrigger.create({
+    trigger: ".marquee", start: "top bottom", end: "bottom top",
+    onUpdate: s => {
+      const v = s.getVelocity();
+      gsap.to(mq, { timeScale: (s.direction) * (1 + Math.min(Math.abs(v) / 300, 6)), duration: .2, overwrite: true });
+      skewTo(gsap.utils.clamp(-8, 8, v / -250));
+      gsap.delayedCall(.2, () => skewTo(0));
+    }
+  });
+
+  // gallery columns parallax
+  $$(".g-col").forEach(col => {
+    gsap.to(col, { yPercent: +col.dataset.speed, ease: "none",
+      scrollTrigger: { trigger: ".g-grid", start: "top bottom", end: "bottom top", scrub: true } });
+  });
+
+  // counters
+  $$("[data-count]").forEach(el => {
+    const o = { v: 0 }, dec = +(el.dataset.dec || 0);
+    gsap.to(o, { v: +el.dataset.count, duration: 2, ease: "power3.out",
+      scrollTrigger: { trigger: el, start: "top 90%" },
+      onUpdate: () => el.textContent = o.v.toFixed(dec) });
+  });
+
+  // studio image parallax
+  gsap.fromTo(".studio-img img", { yPercent: -10 }, { yPercent: 0, ease: "none",
+    scrollTrigger: { trigger: ".studio", start: "top bottom", end: "bottom top", scrub: true } });
+  gsap.from(".rent li", { x: 40, opacity: 0, stagger: .12, duration: 1, ease: "power3.out", scrollTrigger: { trigger: ".rent", start: "top 85%" } });
+
+  // process
+  gsap.to(".steps-line i", { scaleX: 1, ease: "none", scrollTrigger: { trigger: ".steps", start: "top 80%", end: "bottom 60%", scrub: true } });
+  gsap.from(".step", { y: 50, opacity: 0, stagger: .15, duration: 1, ease: "power3.out", scrollTrigger: { trigger: ".steps", start: "top 75%" } });
+
+  // contact
+  gsap.from(".contact h2 .ch", { yPercent: 110, stagger: .025, duration: 1.1, ease: "expo.out", scrollTrigger: { trigger: ".contact h2", start: "top 80%" } });
+  gsap.fromTo(".contact-bg img", { scale: 1.25 }, { scale: 1, ease: "none", scrollTrigger: { trigger: ".contact", start: "top bottom", end: "bottom bottom", scrub: true } });
+  gsap.from(".contact-actions .btn, .contact-grid > div", { y: 30, opacity: 0, stagger: .07, duration: .9, ease: "power3.out", scrollTrigger: { trigger: ".contact-actions", start: "top 90%" } });
+
+  // footer
+  gsap.from(".foot-big", { yPercent: 60, opacity: 0, ease: "none", scrollTrigger: { trigger: "footer", start: "top bottom", end: "bottom bottom", scrub: true } });
+
+  addEventListener("load", () => ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
